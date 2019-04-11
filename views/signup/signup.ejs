@@ -1,0 +1,49 @@
+<%- include ../partials/head %>
+
+<% if (typeof messages == 'object' && messages) { %>
+  <div class="alert alert-success">
+    <% messages.forEach(function(message) { %>
+        <li><%= message.message %></li>
+    <% }); %>
+  </div>
+<% } else { %>
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+        <% if (typeof errors == 'object' && errors) { %>
+          <div class="text-danger errors">
+          <% errors.forEach(function(error) { %>
+            <li><%= error.message %></li>
+        <% }); %>
+        </div>
+        <%}%>
+
+        <div class="card content">
+          <div class="card-header"><i class="fas fa-user-circle"></i><span class="content-title"> Sign Up</span></div>
+            <div class="card-body">
+              <form method="post" id="signup" action="/signup" class="form" role="form" autocomplete="off">
+                <label for="" class="label-form"> Username: </label>
+                <div class="form-group">
+                  <input type="email" name="email" placeholder="user@domain.com" required class="form-control form-control-lg">
+                </div>
+                <label for="" class="label-form"> Password: </label>
+                <div class="form-group">
+                  <input type="password" name="password" placeholder="Password" required class="form-control form-control-lg">
+                </div>
+                <label for="" class="label-form"> Repeat Password: </label>
+                <div class="form-group">
+                  <input type="password" name="confirm_password" placeholder="Repeat password" required class="form-control form-control-lg" >
+                </div>
+                <div class="content-button">
+                  <button type="submit" id="submit" class="btn btn-success btn-block">Create my account </button>
+                </div>
+              </form>
+            </div>
+            <div class="options-help text-center help">
+              <a href="/login" >Sign In</a> - <a href="/recover-password">Lost your password?</a>
+            </div>
+        </div>
+    </div>
+  </div>
+<% } %>
+
+<%- include ../partials/footer %>

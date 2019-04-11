@@ -1,0 +1,140 @@
+<%- include ../partials/head%>
+<style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 325px;
+  }
+  table, tr, td {
+    border: 0px !important;
+    padding-top: 5px !important;
+  }
+  tr {
+    margin-top: 5px !important;
+  }
+  td {
+    color: #2c3e50;
+    font-size: 90%;
+    font-weight: 400;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 120%;
+    margin-top: 5px;
+    padding: 0px;
+  }
+  th {
+    background-color: rgba(44, 62, 80, 1);
+    margin-top: 5px !important; 
+    font-size: 90%;
+    font-weight: 400;
+  }
+
+  form {
+    color: #2c3e50;
+    font-size: 90%;
+    font-weight: 400;
+
+  }
+ 
+</style>
+
+<div class="row ">
+        <div class="col col-sm-12">
+          <div class="card rounded-0 content">
+            <div class="card-header content-title" style="background-color: #2c3e50; padding: 0px;">
+              <nav class="navbar navbar-expand-sm navbar-light bg-faded">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class="navbar-brand table-title" style="color: #FFF;">In attention</span>
+                <div class="collapse navbar-collapse justify-content-end" id="nav-content">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="btn btn-sm btn-danger" href="/alerts" >
+                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+            <div class="card-body content-table">
+              <div id="map"></div>
+              <div class="details col-sm-12" style="padding: 0px;">
+                <table class="table-responsive table" style="margin: 0px; width: 100%;">
+                  <thead>
+                    <tr>
+                      <th>Mobile</th>
+                      <th>Name</th>
+                      <th>Birthday</th>
+                      <th>Gender</th>
+                      <th>Blood</th>
+                      <th>Weight</th>
+                      <th>Height</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td><%=result.user.cellphone%></td>
+                    <td><%=result.user.firstname%> <%=result.user.lastname%> <%=result.user.mlastname%></td>
+                    <td><%=result.user.birthday%></td>
+                    <td><%=result.user.gender%></td>
+                    <td><%=result.user.blood%></td>
+                    <td><%=result.user.weight%></td>
+                    <td><%=result.user.height%></td>
+                  </tr>
+                </tbody>
+                </table>
+              </div>
+              <script>
+
+                function initMap() {
+                  var myLatLng = {lat: <%=result.lat%>, lng: <%=result.lon%>};
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 18,
+                    center: myLatLng
+                  });
+          
+                  var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Hello World!'
+                  });
+                }
+              </script>
+              <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlNd-k8tWlD16Hf1t16KRmWZkhh3P4ffw&callback=initMap">
+              </script>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-sm-6">
+                    <form>
+ 
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Alert status</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Comments</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit form</button>
+
+                      </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<%- include ../partials/footer %>

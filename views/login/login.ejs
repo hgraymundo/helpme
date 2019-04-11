@@ -1,0 +1,36 @@
+<%- include ../partials/head %>
+<div class="row" style="border:0px !important;">
+  <div class="col-md-5 mx-auto " style="border: 0px !important;">
+    <% if (typeof errors == 'object' && errors) { %>
+      <div class="text-danger errors">
+        <%errors.forEach(function(error) { %>
+          <li><%= error.message %></li>
+        <% }); %>
+      </div>
+    <%}%>
+
+    <div class="card content">
+      <div class="card-header"><i class="fas fa-lock"></i><span class="login-title"> Log In</span></div>
+        <div class="card-body">
+          <form class="form" method="post"  action="/login" role="form" autocomplete="off">
+            <label for="" class="label-form"> Username: </label>
+            <div class="form-group">
+              <input type="text" name="username" required placeholder="user@domain.com" class="form-control form-control-lg rounded-0">
+            </div>
+            <label for="" class="label-form"> Password: </label>
+            <div class="form-group">
+              <input type="password" name="password" required placeholder="password" class="form-control form-control-lg rounded-0">
+            </div>
+            <div class="col-md-12 content-button">
+              <button type="submit" class="btn btn-success btn-block">Log In </button>
+            </div>
+          </form>
+        </div>
+        <div class="options-help text-center help">
+          <a href="/signup"> Sign up </a>  -  <a href="/recover-password"> Lost your password?</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+<%- include ../partials/footer %>
